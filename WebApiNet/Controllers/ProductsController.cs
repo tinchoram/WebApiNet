@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using WebApiNet.Models;
 
@@ -40,7 +37,9 @@ namespace WebApiNet.Controllers
         {
             _context.Products.Add(product);
             _context.SaveChanges();
-            return CreatedAtRoute("DefaultApi", new { id = product.Id }, product);
+
+            // Especificamos explícitamente el controlador y el id para que coincidan con la ruta configurada
+            return CreatedAtRoute("DefaultApi", new { controller = "products", id = product.Id }, product);
         }
 
         [HttpPut]
